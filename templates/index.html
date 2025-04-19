@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Переводчик</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&family=Comfortaa:wght@300..700&family=Jersey+15&family=Pixelify+Sans:wght@400..700&family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Переводчик</h1>
+
+    <form method="post">
+        <!-- Выбор языков -->
+        <label for="source_language">Исходный язык:</label>
+        <select name="source_language" required>
+            {% for code, language in available_languages.items() %}
+                <option value="{{ code }}" {% if code == request.form.get('source_language', 'auto') %}selected{% endif %}>
+                    {{ language }}
+                </option>
+            {% endfor %}
+        </select>
+        <br><br>
+
+        <label for="target_language">Перевести на:</label>
+        <select name="target_language" required>
+            {% for code, language in available_languages.items() %}
+                <option value="{{ code }}" {% if code == request.form.get('target_language', 'ru') %}selected{% endif %}>
+                    {{ language }}
+                </option>
+            {% endfor %}
+        </select>
+        <br><br>
+
+        <!-- Две текстовые области -->
+        <div class="textarea-container">
+            <div class="textarea-wrapper">
+                <label for="text">Введите текст:</label>
+                <textarea name="text" placeholder="Введите текст..." required>{{ request.form.get('text', '') }}</textarea>
+            </div>
+
+            <div class="textarea-wrapper">
+                <label>Результат перевода:</label>
+                <textarea readonly>{{ translated_text if translated_text else '' }}</textarea>
+            </div>
+        </div>
+
+        <br>
+        <button class="btn-new" type="submit">Перевести</button>
+        <a class="index" href="{{ url_for('history') }}">Посмотреть историю переводов</a>
+    </form>
+</body>
+</html>
