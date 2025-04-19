@@ -362,3 +362,11 @@
 2025-04-19 15:55:25,966 - INFO - 127.0.0.1 - - [19/Apr/2025 15:55:25] "GET /history HTTP/1.1" 200 -
 2025-04-19 15:56:19,911 - INFO - 127.0.0.1 - - [19/Apr/2025 15:56:19] "GET / HTTP/1.1" 200 -
 2025-04-19 15:56:19,920 - INFO - 127.0.0.1 - - [19/Apr/2025 15:56:19] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-19 16:37:03,103 - INFO -  * Detected change in 'C:\\Users\\КундызбаевН\\AppData\\Roaming\\Python\\Python310\\site-packages\\requests\\utils.py', reloading
+2025-04-19 16:37:03,166 - INFO -  * Restarting with stat
+2025-04-19 16:37:03,650 - WARNING -  * Debugger is active!
+2025-04-19 16:37:03,650 - INFO -  * Debugger PIN: 111-505-374
+2025-04-19 16:37:04,854 - INFO -  * Detected change in 'C:\\Users\\КундызбаевН\\AppData\\Roaming\\Python\\Python310\\site-packages\\black\\__init__.py', reloading
+2025-04-19 16:37:04,916 - INFO -  * Restarting with stat
+2025-04-19 16:37:05,327 - WARNING -  * Debugger is active!
+2025-04-19 16:37:05,329 - INFO -  * Debugger PIN: 111-505-374
