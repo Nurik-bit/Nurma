@@ -17,7 +17,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install black
+          pip install -r requirements.txt  # Устанавливаем все зависимости из requirements.txt
 
       - name: Run Black
         run: |
@@ -26,7 +26,7 @@ jobs:
   tests:
     name: Run unit tests
     runs-on: ubuntu-latest
-    needs: lint  # ждет завершения lint
+    needs: lint
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -38,7 +38,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r requirements.txt
+          pip install -r requirements.txt  # Устанавливаем зависимости, включая Flask
 
       - name: Run tests
         run: |
@@ -47,7 +47,7 @@ jobs:
   deploy:
     name: Deploy app
     runs-on: ubuntu-latest
-    needs: tests  # ждет завершения tests
+    needs: tests
     steps:
       - name: Simulate deploy
         run: echo "Deploying the app (можно заменить на реальный скрипт)"
