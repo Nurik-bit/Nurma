@@ -4,7 +4,7 @@ import logging
 from logging.handlers import RotatingFileHandler
 from flask import Flask, render_template, request, redirect, url_for
 from googletrans import Translator
-from database import (
+from app.database import (
     init_db,
     save_translation,
     get_translation_history,

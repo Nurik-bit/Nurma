@@ -11,6 +11,10 @@ import database
 
 
 class TestDatabase(unittest.TestCase):
+    def setUp(self):
+        # Инициализируем БД перед каждым тестом
+        database.init_db()
+
     def test_connection(self):
         conn = database.create_connection()
         self.assertIsNotNone(conn)
@@ -23,7 +27,6 @@ class TestDatabase(unittest.TestCase):
         target_language = "en"
         translation_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-        database.init_db()  # Обязательно инициализируем БД
         database.save_translation(
             source_text,
             translated_text,
@@ -38,7 +41,6 @@ class TestDatabase(unittest.TestCase):
         )
 
     def test_delete_translation(self):
-        # Добавляем перевод
         source_text = "Удалить это"
         translated_text = "Delete this"
         source_language = "ru"
@@ -53,13 +55,11 @@ class TestDatabase(unittest.TestCase):
             translation_date,
         )
 
-        # Получаем последний translation_id
         history = database.get_translation_history()
         last_id = history[-1][0]  # Первый столбец — это id
 
         database.delete_translation(last_id)
 
-        # Проверяем, что его больше нет в истории
         updated_history = database.get_translation_history()
         self.assertFalse(any(row[0] == last_id for row in updated_history))
 
