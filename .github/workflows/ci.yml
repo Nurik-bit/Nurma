@@ -17,7 +17,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r requirements.txt  # Устанавливаем все зависимости из requirements.txt
+          pip install -r requirements.txt  # Установим все зависимости из requirements.txt
 
       - name: Run Black
         run: |
