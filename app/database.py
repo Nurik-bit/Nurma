@@ -10,6 +10,8 @@ REPORTS_DIR = os.path.join(BASE_DIR, "reports")
 LOG_FILE_PATH = os.path.join(LOGS_DIR, "log.log")
 REPORT_FILE_PATH = os.path.join(REPORTS_DIR, "report.html")
 
+# Создаём необходимые папки
+os.makedirs(os.path.dirname(DATABASE_PATH), exist_ok=True)  # <-- важное добавление
 os.makedirs(LOGS_DIR, exist_ok=True)
 os.makedirs(REPORTS_DIR, exist_ok=True)
 
@@ -29,6 +31,10 @@ def init_db(conn=None):
     if conn is None:
         conn = create_connection()
         created_here = True
+
+    if conn is None:
+        print("Ошибка: соединение с базой данных не установлено.")
+        return
 
     cursor = conn.cursor()
 
@@ -100,6 +106,10 @@ def save_translation(
         conn = create_connection()
         created_here = True
 
+    if conn is None:
+        print("Ошибка: соединение с базой данных не установлено.")
+        return
+
     cursor = conn.cursor()
 
     cursor.execute(
@@ -132,6 +142,10 @@ def get_translation_history(conn=None):
         conn = create_connection()
         created_here = True
 
+    if conn is None:
+        print("Ошибка: соединение с базой данных не установлено.")
+        return []
+
     cursor = conn.cursor()
 
     cursor.execute(
@@ -156,6 +170,10 @@ def delete_translation(translation_id, conn=None):
     if conn is None:
         conn = create_connection()
         created_here = True
+
+    if conn is None:
+        print("Ошибка: соединение с базой данных не установлено.")
+        return
 
     cursor = conn.cursor()
     cursor.execute(
